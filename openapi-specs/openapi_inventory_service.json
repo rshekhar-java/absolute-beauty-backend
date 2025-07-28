@@ -1,0 +1,87 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Inventory Management Service API",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/inventory/sku/{sku}": {
+      "get": {
+        "summary": "Get inventory by SKU",
+        "parameters": [
+          {
+            "name": "sku",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Inventory details"
+          }
+        }
+      }
+    },
+    "/inventory/update/after-order": {
+      "post": {
+        "summary": "Update inventory after order",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Stock updated"
+          }
+        }
+      }
+    },
+    "/inventory/update/after-return": {
+      "post": {
+        "summary": "Update inventory after return",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Stock restored"
+          }
+        }
+      }
+    },
+    "/inventory/below-threshold": {
+      "get": {
+        "summary": "List products below stock threshold",
+        "responses": {
+          "200": {
+            "description": "Low stock report"
+          }
+        }
+      }
+    },
+    "/inventory/reorder-request": {
+      "post": {
+        "summary": "Trigger reorder for low stock products",
+        "responses": {
+          "200": {
+            "description": "Reorder initiated"
+          }
+        }
+      }
+    }
+  }
+}
